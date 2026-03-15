@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Midnight Theme (Default) - Premium Dark */
+  --terminal-bg: #0d0d0d;
+  --terminal-window: #111111;
+  --terminal-title-bar: #1a1a1a;
+  --terminal-text: #e2e8f0;
+  --terminal-prompt: #7c3aed;
+  --terminal-username: #06b6d4;
+  --terminal-hostname: #10b981;
+  --terminal-command: #f1f5f9;
+  --terminal-output: #94a3b8;
+  --terminal-error: #f87171;
+  --terminal-success: #34d399;
+  --terminal-file: #60a5fa;
+  --terminal-accent: #7c3aed;
+  --terminal-ai-bg: rgba(124, 58, 237, 0.12);
+  --terminal-ai-border: rgba(124, 58, 237, 0.5);
+  --terminal-selection: rgba(124, 58, 237, 0.3);
+  --terminal-cursor: #7c3aed;
+  --terminal-shadow: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="hacker"] {
+  /* Classic Hacker Green on Black */
+  --terminal-bg: #000000;
+  --terminal-window: #0a0a0a;
+  --terminal-title-bar: #0f0f0f;
+  --terminal-text: #00ff00;
+  --terminal-prompt: #00ff00;
+  --terminal-username: #00ff00;
+  --terminal-hostname: #00ff00;
+  --terminal-command: #00ff00;
+  --terminal-output: #00cc00;
+  --terminal-error: #ff0000;
+  --terminal-success: #00ff00;
+  --terminal-file: #00ffff;
+  --terminal-accent: #00ff00;
+  --terminal-ai-bg: rgba(0, 255, 0, 0.12);
+  --terminal-ai-border: rgba(0, 255, 0, 0.5);
+  --terminal-selection: rgba(0, 255, 0, 0.3);
+  --terminal-cursor: #00ff00;
+  --terminal-shadow: rgba(0, 0, 0, 0.9);
+}
+
+[data-theme="dracula"] {
+  /* Dracula Theme */
+  --terminal-bg: #0d0d0d;
+  --terminal-window: #282a36;
+  --terminal-title-bar: #1e1f28;
+  --terminal-text: #f8f8f2;
+  --terminal-prompt: #bd93f9;
+  --terminal-username: #8be9fd;
+  --terminal-hostname: #50fa7b;
+  --terminal-command: #f8f8f2;
+  --terminal-output: #6272a4;
+  --terminal-error: #ff5555;
+  --terminal-success: #50fa7b;
+  --terminal-file: #8be9fd;
+  --terminal-accent: #bd93f9;
+  --terminal-ai-bg: rgba(189, 147, 249, 0.12);
+  --terminal-ai-border: rgba(189, 147, 249, 0.5);
+  --terminal-selection: rgba(189, 147, 249, 0.3);
+  --terminal-cursor: #bd93f9;
+  --terminal-shadow: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="nord"] {
+  /* Nord Theme */
+  --terminal-bg: #0d0d0d;
+  --terminal-window: #2e3440;
+  --terminal-title-bar: #242933;
+  --terminal-text: #eceff4;
+  --terminal-prompt: #88c0d0;
+  --terminal-username: #8fbcbb;
+  --terminal-hostname: #a3be8c;
+  --terminal-command: #eceff4;
+  --terminal-output: #d8dee9;
+  --terminal-error: #bf616a;
+  --terminal-success: #a3be8c;
+  --terminal-file: #81a1c1;
+  --terminal-accent: #88c0d0;
+  --terminal-ai-bg: rgba(136, 192, 208, 0.12);
+  --terminal-ai-border: rgba(136, 192, 208, 0.5);
+  --terminal-selection: rgba(136, 192, 208, 0.3);
+  --terminal-cursor: #88c0d0;
+  --terminal-shadow: rgba(0, 0, 0, 0.8);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-terminal-bg text-terminal-text font-mono;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: var(--terminal-selection);
+    color: var(--terminal-text);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--terminal-window);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--terminal-accent);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--terminal-prompt);
+  }
+}
+
+@layer components {
+  /* Terminal Window */
+  .terminal-window {
+    background-color: var(--terminal-window);
+    box-shadow: 0 25px 80px var(--terminal-shadow);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* Title Bar */
+  .terminal-title-bar {
+    background: linear-gradient(180deg, var(--terminal-title-bar) 0%, var(--terminal-window) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Terminal Text Colors */
+  .text-prompt {
+    color: var(--terminal-prompt);
+  }
+
+  .text-username {
+    color: var(--terminal-username);
+  }
+
+  .text-hostname {
+    color: var(--terminal-hostname);
+  }
+
+  .text-command {
+    color: var(--terminal-command);
+  }
+
+  .text-output {
+    color: var(--terminal-output);
+  }
+
+  .text-error {
+    color: var(--terminal-error);
+  }
+
+  .text-success {
+    color: var(--terminal-success);
+  }
+
+  .text-file {
+    color: var(--terminal-file);
+  }
+
+  .text-accent {
+    color: var(--terminal-accent);
+  }
+
+  /* Cursor */
+  .terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background-color: var(--terminal-cursor);
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  /* CRT Scanline Effect */
+  .scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    opacity: 0.02;
+    z-index: 10;
+  }
+
+  /* AI Chat Bubble */
+  .ai-bubble {
+    background-color: var(--terminal-ai-bg);
+    border: 1px solid var(--terminal-ai-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+  }
+
+  /* Link Styling */
+  .terminal-link {
+    color: var(--terminal-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .terminal-link:hover {
+    border-bottom-color: var(--terminal-accent);
+  }
+
+  /* Matrix Background */
+  .matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.03;
+    z-index: 0;
+  }
+
+  /* Typewriter Effect */
+  .typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typewriter 2s steps(40) 1s 1 normal both;
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Window Dots */
+  .window-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .window-dot:hover {
+    transform: scale(1.1);
+  }
+
+  .window-dot-red {
+    background-color: #ff5f56;
+  }
+
+  .window-dot-yellow {
+    background-color: #ffbd2e;
+  }
+
+  .window-dot-green {
+    background-color: #27c93f;
+  }
+
+  /* Glass effect for modals */
+  .glass {
+    background: rgba(17, 17, 17, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Command output box */
+  .command-box {
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 4px;
+    padding: 16px;
+    margin: 8px 0;
+    background: rgba(124, 58, 237, 0.05);
+  }
+
+  /* Smooth scroll */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Text shadow for glow effect */
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  /* Monospace preserve spaces */
+  .preserve-spaces {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
